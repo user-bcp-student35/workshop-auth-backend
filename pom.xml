@@ -28,6 +28,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.password4j</groupId>
+            <artifactId>password4j</artifactId>
+            <version>1.8.4</version>
+        </dependency>
+        <dependency>
             <groupId>io.quarkus</groupId>
             <artifactId>quarkus-arc</artifactId>
         </dependency>
@@ -73,6 +78,9 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire-plugin.version}</version>
                 <configuration>
+                    <environmentVariables>
+                        <AUTH_DB_URL>jdbc:sqlite:${project.build.directory}/h01-tests.db</AUTH_DB_URL>
+                    </environmentVariables>
                     <systemPropertyVariables>
                         <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager>
                     </systemPropertyVariables>
