@@ -39,7 +39,7 @@ El token que devuelve `POST /auth/login` no cumple lo que exige HU-01: no tiene 
 
 ## Comportamiento que debe preservarse
 
-Baseline tomado de `AuthResource.java`, porque `docs/ENDPOINTS.md` no existe en el repositorio:
+Contrato de referencia: `docs/ENDPOINTS.md` existe en el repositorio y documenta el contrato actual; las pruebas y `AuthResource.java` completan su evidencia:
 
 - `POST /auth/login` consume y produce JSON.
 - Errores: 400 `Request is null`, 400 `Username is required`, 400 `Password is required`, 401 `Invalid user {username} or password`, 500 con `message` y `exception`.
@@ -47,7 +47,7 @@ Baseline tomado de `AuthResource.java`, porque `docs/ENDPOINTS.md` no existe en 
 
 ## Decisiones
 
-1. Baseline del contrato: comportamiento de `AuthResource.java`, porque `docs/ENDPOINTS.md` no existe en el repositorio.
+1. Baseline del contrato: `docs/ENDPOINTS.md` y el comportamiento comprobado de `AuthResource.java` y sus pruebas.
 2. Mecanismo de integridad: neutral en la spec (HMAC o librería JWT se decide en `design.md`). HU-01 menciona HMAC y `AUTH_TOKEN_SECRET`, que el código actual no usa.
 3. `client` obligatorio: ausente o en blanco devuelve 400. Cambio incompatible para clientes que no lo envían.
 4. Tolerancia entre `expiresIn` y `exp - now`: 5 segundos.
